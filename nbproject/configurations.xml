@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="SourceFiles" displayName="ソース・ファイル" projectFiles="true">
+      <itemPath>AttitudeControl.cpp</itemPath>
+      <itemPath>Bot_Configuration.cpp</itemPath>
+      <itemPath>Bot_Walking.cpp</itemPath>
+      <itemPath>InsectBot_Motions.cpp</itemPath>
+      <itemPath>JoystickDriver.cpp</itemPath>
+      <itemPath>KalmanFilter.cpp</itemPath>
+      <itemPath>Kinematics3DOF.cpp</itemPath>
+      <itemPath>LowPassFilter.cpp</itemPath>
+      <itemPath>SensorInfo.cpp</itemPath>
+      <itemPath>Serial_CSV_Format.cpp</itemPath>
+      <itemPath>ServoAdjuster.cpp</itemPath>
+      <itemPath>ServoBlaster.cpp</itemPath>
+      <itemPath>TimeCount.cpp</itemPath>
+      <itemPath>TimeKeeper.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="HeaderFiles" displayName="ヘッダー・ファイル" projectFiles="true">
+      <itemPath>AttitudeControl.h</itemPath>
+      <itemPath>Bot_Configuration.h</itemPath>
+      <itemPath>Bot_Walking.h</itemPath>
+      <itemPath>InsectBot_Motions.h</itemPath>
+      <itemPath>JoystickDriver.h</itemPath>
+      <itemPath>KalmanFilter.h</itemPath>
+      <itemPath>Kinematics3DOF.h</itemPath>
+      <itemPath>LowPassFilter.h</itemPath>
+      <itemPath>SensorInfo.h</itemPath>
+      <itemPath>Serial_CSV_Format.h</itemPath>
+      <itemPath>ServoAdjuster.h</itemPath>
+      <itemPath>ServoBlaster.h</itemPath>
+      <itemPath>TimeCount.h</itemPath>
+      <itemPath>TimeKeeper.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles" displayName="リソース・ファイル" projectFiles="true">
+      <itemPath>SensorGain_Acc.csv</itemPath>
+      <itemPath>SensorGain_AngVel.csv</itemPath>
+      <itemPath>ServoAdjustParameter.csv</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="テスト・ファイル"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="重要なファイル"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <commandlineTool>g++</commandlineTool>
+          <commandLine>-lwiringPi -std=c++11</commandLine>
+        </ccTool>
+      </compileType>
+      <item path="AttitudeControl.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AttitudeControl.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Bot_Configuration.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Bot_Configuration.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Bot_Walking.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Bot_Walking.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="InsectBot_Motions.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="InsectBot_Motions.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JoystickDriver.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JoystickDriver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="KalmanFilter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="KalmanFilter.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Kinematics3DOF.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Kinematics3DOF.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LowPassFilter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="LowPassFilter.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SensorGain_Acc.csv" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SensorGain_AngVel.csv" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SensorInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SensorInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Serial_CSV_Format.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Serial_CSV_Format.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ServoAdjustParameter.csv" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ServoAdjuster.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ServoAdjuster.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ServoBlaster.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ServoBlaster.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TimeCount.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TimeCount.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TimeKeeper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TimeKeeper.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="AttitudeControl.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AttitudeControl.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Bot_Configuration.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Bot_Configuration.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Bot_Walking.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Bot_Walking.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="InsectBot_Motions.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="InsectBot_Motions.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="JoystickDriver.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="JoystickDriver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="KalmanFilter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="KalmanFilter.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Kinematics3DOF.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Kinematics3DOF.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="LowPassFilter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="LowPassFilter.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SensorGain_Acc.csv" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SensorGain_AngVel.csv" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SensorInfo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SensorInfo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Serial_CSV_Format.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Serial_CSV_Format.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ServoAdjustParameter.csv" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ServoAdjuster.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ServoAdjuster.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ServoBlaster.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ServoBlaster.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TimeCount.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TimeCount.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TimeKeeper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TimeKeeper.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
