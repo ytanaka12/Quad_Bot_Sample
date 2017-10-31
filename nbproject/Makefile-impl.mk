@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=LegDriver_3DOF_SerialLink
+PROJECTNAME=Quad_Bot_Sample
 
 # Active Configuration
 DEFAULTCONF=Debug

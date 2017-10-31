@@ -35,21 +35,21 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/AttitudeControl.o \
-	${OBJECTDIR}/Bot_Configuration.o \
-	${OBJECTDIR}/Bot_Walking.o \
-	${OBJECTDIR}/InsectBot_Motions.o \
-	${OBJECTDIR}/JoystickDriver.o \
-	${OBJECTDIR}/KalmanFilter.o \
-	${OBJECTDIR}/Kinematics3DOF.o \
-	${OBJECTDIR}/LowPassFilter.o \
-	${OBJECTDIR}/SensorInfo.o \
-	${OBJECTDIR}/Serial_CSV_Format.o \
-	${OBJECTDIR}/ServoAdjuster.o \
-	${OBJECTDIR}/ServoBlaster.o \
-	${OBJECTDIR}/TimeCount.o \
-	${OBJECTDIR}/TimeKeeper.o \
-	${OBJECTDIR}/main.o
+	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/source/AttitudeControl.o \
+	${OBJECTDIR}/source/Bot_Configuration.o \
+	${OBJECTDIR}/source/Bot_Walking.o \
+	${OBJECTDIR}/source/InsectBot_Motions.o \
+	${OBJECTDIR}/source/JoystickDriver.o \
+	${OBJECTDIR}/source/KalmanFilter.o \
+	${OBJECTDIR}/source/Kinematics3DOF.o \
+	${OBJECTDIR}/source/LowPassFilter.o \
+	${OBJECTDIR}/source/SensorInfo.o \
+	${OBJECTDIR}/source/Serial_CSV_Format.o \
+	${OBJECTDIR}/source/ServoAdjuster.o \
+	${OBJECTDIR}/source/ServoBlaster.o \
+	${OBJECTDIR}/source/TimeCount.o \
+	${OBJECTDIR}/source/TimeKeeper.o
 
 
 # C Compiler Flags
@@ -70,86 +70,86 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/legdriver_3dof_seriallink
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/quad_bot_sample
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/legdriver_3dof_seriallink: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/quad_bot_sample: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/legdriver_3dof_seriallink ${OBJECTFILES} ${LDLIBSOPTIONS}
-
-${OBJECTDIR}/AttitudeControl.o: AttitudeControl.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AttitudeControl.o AttitudeControl.cpp
-
-${OBJECTDIR}/Bot_Configuration.o: Bot_Configuration.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Bot_Configuration.o Bot_Configuration.cpp
-
-${OBJECTDIR}/Bot_Walking.o: Bot_Walking.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Bot_Walking.o Bot_Walking.cpp
-
-${OBJECTDIR}/InsectBot_Motions.o: InsectBot_Motions.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/InsectBot_Motions.o InsectBot_Motions.cpp
-
-${OBJECTDIR}/JoystickDriver.o: JoystickDriver.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/JoystickDriver.o JoystickDriver.cpp
-
-${OBJECTDIR}/KalmanFilter.o: KalmanFilter.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/KalmanFilter.o KalmanFilter.cpp
-
-${OBJECTDIR}/Kinematics3DOF.o: Kinematics3DOF.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Kinematics3DOF.o Kinematics3DOF.cpp
-
-${OBJECTDIR}/LowPassFilter.o: LowPassFilter.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/LowPassFilter.o LowPassFilter.cpp
-
-${OBJECTDIR}/SensorInfo.o: SensorInfo.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SensorInfo.o SensorInfo.cpp
-
-${OBJECTDIR}/Serial_CSV_Format.o: Serial_CSV_Format.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Serial_CSV_Format.o Serial_CSV_Format.cpp
-
-${OBJECTDIR}/ServoAdjuster.o: ServoAdjuster.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ServoAdjuster.o ServoAdjuster.cpp
-
-${OBJECTDIR}/ServoBlaster.o: ServoBlaster.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ServoBlaster.o ServoBlaster.cpp
-
-${OBJECTDIR}/TimeCount.o: TimeCount.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TimeCount.o TimeCount.cpp
-
-${OBJECTDIR}/TimeKeeper.o: TimeKeeper.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/TimeKeeper.o TimeKeeper.cpp
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/quad_bot_sample ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+
+${OBJECTDIR}/source/AttitudeControl.o: source/AttitudeControl.cpp
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/AttitudeControl.o source/AttitudeControl.cpp
+
+${OBJECTDIR}/source/Bot_Configuration.o: source/Bot_Configuration.cpp
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/Bot_Configuration.o source/Bot_Configuration.cpp
+
+${OBJECTDIR}/source/Bot_Walking.o: source/Bot_Walking.cpp
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/Bot_Walking.o source/Bot_Walking.cpp
+
+${OBJECTDIR}/source/InsectBot_Motions.o: source/InsectBot_Motions.cpp
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/InsectBot_Motions.o source/InsectBot_Motions.cpp
+
+${OBJECTDIR}/source/JoystickDriver.o: source/JoystickDriver.cpp
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/JoystickDriver.o source/JoystickDriver.cpp
+
+${OBJECTDIR}/source/KalmanFilter.o: source/KalmanFilter.cpp
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/KalmanFilter.o source/KalmanFilter.cpp
+
+${OBJECTDIR}/source/Kinematics3DOF.o: source/Kinematics3DOF.cpp
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/Kinematics3DOF.o source/Kinematics3DOF.cpp
+
+${OBJECTDIR}/source/LowPassFilter.o: source/LowPassFilter.cpp
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/LowPassFilter.o source/LowPassFilter.cpp
+
+${OBJECTDIR}/source/SensorInfo.o: source/SensorInfo.cpp
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/SensorInfo.o source/SensorInfo.cpp
+
+${OBJECTDIR}/source/Serial_CSV_Format.o: source/Serial_CSV_Format.cpp
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/Serial_CSV_Format.o source/Serial_CSV_Format.cpp
+
+${OBJECTDIR}/source/ServoAdjuster.o: source/ServoAdjuster.cpp
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/ServoAdjuster.o source/ServoAdjuster.cpp
+
+${OBJECTDIR}/source/ServoBlaster.o: source/ServoBlaster.cpp
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/ServoBlaster.o source/ServoBlaster.cpp
+
+${OBJECTDIR}/source/TimeCount.o: source/TimeCount.cpp
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/TimeCount.o source/TimeCount.cpp
+
+${OBJECTDIR}/source/TimeKeeper.o: source/TimeKeeper.cpp
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/TimeKeeper.o source/TimeKeeper.cpp
 
 # Subprojects
 .build-subprojects:
