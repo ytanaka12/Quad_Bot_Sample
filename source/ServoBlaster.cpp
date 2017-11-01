@@ -28,9 +28,10 @@ namespace nsServoBlaster{
 
 	ServoBlaster::ServoBlaster() {
 		MinPalseWidth_us = 500;		//default
-		MaxPalseWidth_us = 2500;	//default
+		MaxPalseWidth_us = 3000;	//default
 		MinPalseWidth = MinPalseWidth_us / 10;	//default
 		MaxPalseWidth = MaxPalseWidth_us / 10;	//default
+		OpenDeviceFile();
 	}
 
 	ServoBlaster::ServoBlaster(const ServoBlaster& orig) {
@@ -68,20 +69,8 @@ namespace nsServoBlaster{
 	/* ServoBalster Settings */
 	/*-----------------------*/
 	void ServoBlaster::ServoBlasterSettings(){
-		/* ServoBlaster Settings */
-//		ostringstream buf;
-//		buf << "servod";
-//		if(0 < P1Pins.size()){
-//			buf << " --p1pins=" << P1Pins[0];
-//			for(int i = 1 ; i < P1Pins.size() ; i++){
-//				buf << "," << P1Pins[i];
-//			}
-//		}
-//		buf << " --min=" << MinPalseWidth_us << "us";
-//		buf << " --max=" << MaxPalseWidth_us << "us";
-//		system(buf.str().c_str());
 		
-		system("sh /home/pi/runSB.sh");	//run this script to setup
+		system("sh ServoBlaster_RunKill/runSB.sh");	//run this script to setup
 		usleep(500000);
 		cout << "run servod" << endl;
 	}
@@ -108,7 +97,7 @@ namespace nsServoBlaster{
 	void ServoBlaster::CloseDeviceFile(){
 		close(FileDesc);
 		cout << "Closed: " << DEV_NAME_OF_SERVO_BLASTER << endl;
-		system("sh /home/pi/killSB.sh");
+		system("sh ServoBlaster_RunKill/killSB.sh");
 	}
 	
 	/*-------*/
@@ -167,6 +156,7 @@ namespace nsServoBlaster{
 	}
 
 }
+
 
 
 

@@ -32,17 +32,15 @@ int main(void){
 	/*-------------------------------*/
 	nsServoAdjuster::ServoAdjuster sa;
 	sa.ReadParameterFile();
-	vector<unsigned int> p1pins = sa.GetP1Pins();
 
 	/*--------------------*/
 	/* setup ServoBlaster */
 	/*--------------------*/
-	//sudo servod --p1pins=3,5,7,11,13,15,19,21,23,29,31,33 --min=100us --max=3000us
 	nsServoBlaster::ServoBlaster sb;
-	sb.Set_P1Pins(p1pins);
-	sb.Set_MinPalseWidth_us(100);
-	sb.Set_MaxPalseWidth_us(3000);
-	sb.OpenDeviceFile();
+//	sb.Set_P1Pins(p1pins);
+//	sb.Set_MinPalseWidth_us(100);
+//	sb.Set_MaxPalseWidth_us(3000);
+//	sb.OpenDeviceFile();
 	
 	system("pwd");
 	
@@ -89,7 +87,6 @@ int main(void){
 	/* InsectBot Motions */
 	/*-------------------*/
 	nsBot_Walking::Bot_Walking botWalking;
-	//nsInsectBot_Motions::InsectBot_Motions ibotm;
 
 	/*------------*/
 	/* time count */
@@ -119,12 +116,6 @@ int main(void){
 		/*------------------*/
 		/* InsectBot motion */
 		/*------------------*/
-//		nsInsectBot_Motions::XYZ velocity;
-//		nsInsectBot_Motions::XYZ angular_velocity;
-//		velocity.X = js.GetLStick_Y() * 0.15;
-//		velocity.Y = js.GetLStick_X() * 0.15;
-//		velocity.Z = js.GetRStick_Y() * 0.15;
-//		ibotm.GenerateMotion_Gamepad(velocity, angular_velocity);
 		botWalking.GenerateMotion();
 		botConf = botWalking.Get_BotConf();
 		
@@ -144,13 +135,14 @@ int main(void){
 		/*------------------*/
 		/* Attitude Control */
 		/*------------------*/
-		nsAttitudeControl::AttitudeControl attiCont;
-		attiCont.Set_BotConf(botConf);
-		attiCont.Set_Acc(acc);
-		attiCont.Set_AngVel(ang_vel);
-		attiCont.Calculation();
-		nsBot_Configuration::Bot_Configuration botConf_Mod;
-		botConf_Mod = attiCont.Get_Modified_BotConf();
+//		nsAttitudeControl::AttitudeControl attiCont;
+//		attiCont.Set_BotConf(botConf);
+//		attiCont.Set_Acc(acc);
+//		attiCont.Set_AngVel(ang_vel);
+//		attiCont.Calculation();
+//		nsBot_Configuration::Bot_Configuration botConf_Mod;
+//		botConf_Mod = attiCont.Get_Modified_BotConf();
+		
 //		cout << "         ang: " << botConf.Get_LegAngle(0, 3) << endl;
 //		cout << "modified ang: " << botConf_Mod.Get_LegAngle(0, 3) << endl;
 //		cout << "        diff: " << botConf_Mod.Get_LegAngle(0, 3) - botConf.Get_LegAngle(0, 3) << endl;
@@ -158,8 +150,6 @@ int main(void){
 		double ang[4][3];
 		for(int i = 0 ; i < 4 ; i++){
 			for(int j = 0 ; j < 3 ; j++){
-				//ang[i][j] = ibotm.GetLegAngles(i, j);
-				//ang[i][j] = botConf.Get_LegAngle(i, j);
 				ang[i][j] = botConf_Mod.Get_LegAngle(i, j);
 			}
 		}

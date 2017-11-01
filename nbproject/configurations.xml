@@ -17,7 +17,16 @@
       <itemPath>include/TimeCount.h</itemPath>
       <itemPath>include/TimeKeeper.h</itemPath>
     </logicalFolder>
+    <logicalFolder name="ServoBlaster_RunKill"
+                   displayName="ServoBlaster_RunKill"
+                   projectFiles="true">
+      <itemPath>ServoBlaster_RunKill/killSB.sh</itemPath>
+      <itemPath>ServoBlaster_RunKill/runSB.sh</itemPath>
+    </logicalFolder>
     <logicalFolder name="setting" displayName="setting" projectFiles="true">
+      <itemPath>setting/SensorGain_Acc.csv</itemPath>
+      <itemPath>setting/SensorGain_AngVel.csv</itemPath>
+      <itemPath>setting/ServoAdjustParameter.csv</itemPath>
     </logicalFolder>
     <logicalFolder name="source" displayName="source" projectFiles="true">
       <itemPath>source/AttitudeControl.cpp</itemPath>
@@ -36,9 +45,6 @@
       <itemPath>source/TimeKeeper.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles" displayName="リソース・ファイル" projectFiles="true">
-      <itemPath>SensorGain_Acc.csv</itemPath>
-      <itemPath>SensorGain_AngVel.csv</itemPath>
-      <itemPath>ServoAdjustParameter.csv</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="テスト・ファイル"
@@ -58,6 +64,7 @@
     <Elem>setting</Elem>
     <Elem>include</Elem>
     <Elem>source</Elem>
+    <Elem>ServoBlaster_RunKill</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -76,11 +83,9 @@
           <commandLine>-lwiringPi -std=c++11</commandLine>
         </ccTool>
       </compileType>
-      <item path="SensorGain_Acc.csv" ex="false" tool="3" flavor2="0">
+      <item path="ServoBlaster_RunKill/killSB.sh" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="SensorGain_AngVel.csv" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ServoAdjustParameter.csv" ex="false" tool="3" flavor2="0">
+      <item path="ServoBlaster_RunKill/runSB.sh" ex="false" tool="3" flavor2="0">
       </item>
       <item path="TimeCount.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -113,6 +118,12 @@
       <item path="include/TimeKeeper.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="setting/SensorGain_Acc.csv" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="setting/SensorGain_AngVel.csv" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="setting/ServoAdjustParameter.csv" ex="false" tool="3" flavor2="0">
       </item>
       <item path="source/AttitudeControl.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -163,11 +174,9 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="SensorGain_Acc.csv" ex="false" tool="3" flavor2="0">
+      <item path="ServoBlaster_RunKill/killSB.sh" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="SensorGain_AngVel.csv" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ServoAdjustParameter.csv" ex="false" tool="3" flavor2="0">
+      <item path="ServoBlaster_RunKill/runSB.sh" ex="false" tool="3" flavor2="0">
       </item>
       <item path="TimeCount.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -200,6 +209,12 @@
       <item path="include/TimeKeeper.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="setting/SensorGain_Acc.csv" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="setting/SensorGain_AngVel.csv" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="setting/ServoAdjustParameter.csv" ex="false" tool="3" flavor2="0">
       </item>
       <item path="source/AttitudeControl.cpp" ex="false" tool="1" flavor2="0">
       </item>

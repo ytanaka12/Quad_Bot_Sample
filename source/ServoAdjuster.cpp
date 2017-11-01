@@ -23,7 +23,7 @@ using namespace std;
 namespace nsServoAdjuster{
 
 	ServoAdjuster::ServoAdjuster() {
-		FileName = "ServoAdjustParameter.csv";
+		FileName = "setting/ServoAdjustParameter.csv";
 	}
 
 	ServoAdjuster::ServoAdjuster(const ServoAdjuster& orig) {
@@ -43,7 +43,7 @@ namespace nsServoAdjuster{
 	void ServoAdjuster::ReadParameterFile(){
 		ifstream ifs(FileName);
 		if(!ifs){
-			cout << "cannot open Parameter file" << endl;
+			cout << "cannot open Parameter file: " << FileName << endl;
 			exit(EXIT_FAILURE);
 		}
 		

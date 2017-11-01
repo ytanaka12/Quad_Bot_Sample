@@ -25,6 +25,9 @@ const double RAD2DEG = 180.0 / 3.1415;
 
 using namespace std;
 
+static string SENSOR_GAIN_ACC_CSV = "setting/SensorGain_Acc.csv";
+static string SENSOR_GAIN_ANGVEL_CSV = "setting/SensorGain_AngVel.csv";
+
 namespace nsSensorInfo{
 
 	SensorInfo::SensorInfo() {
@@ -77,10 +80,9 @@ namespace nsSensorInfo{
 	/* Read Gain Paramter Acc */
 	/*------------------------*/
 	void SensorInfo::ReadGainParameter_Acc(){
-		string FileName = "SensorGain_Acc.csv";
-		ifstream ifs(FileName);
+		ifstream ifs(SENSOR_GAIN_ACC_CSV);
 		if(!ifs){
-			cout << "cannot open Gain Parameter file" << endl;
+			cout << "cannot open Gain Parameter file: " << SENSOR_GAIN_ACC_CSV << endl;
 			exit(EXIT_FAILURE);
 		}
 		
@@ -120,10 +122,9 @@ namespace nsSensorInfo{
 	/* Read Gain Paramter AngVel */
 	/*---------------------------*/
 	void SensorInfo::ReadGainParameter_AngVel(){
-		string FileName = "SensorGain_AngVel.csv";
-		ifstream ifs(FileName);
+		ifstream ifs(SENSOR_GAIN_ANGVEL_CSV);
 		if(!ifs){
-			cout << "cannot open Gain Parameter file" << endl;
+			cout << "cannot open Gain Parameter file: " << SENSOR_GAIN_ANGVEL_CSV << endl;
 			exit(EXIT_FAILURE);
 		}
 		
