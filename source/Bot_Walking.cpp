@@ -106,7 +106,7 @@ namespace nsBot_Walking{
 			for(int i = 0 ; i < 4 ; i++){
 				init_LegPos[i].X =  0.14;
 				init_LegPos[i].Y =  0.14;
-				init_LegPos[i].Z = -0.08;
+				init_LegPos[i].Z = -0.1;
 			}
 										init_LegPos[1].Y *= -1.0;
 			init_LegPos[2].X *= -1.0;	init_LegPos[2].Y *= -1.0;
@@ -255,7 +255,7 @@ namespace nsBot_Walking{
 		//cout << "leg pos: " << g_LegPos[0].X << endl;
 		//cout << "centroid: " << centroid[mleg_number].X << " / " << centroid[mleg_number].Y << endl;
 		
-		botConf.Set_LegVel_AllZero();
+		//botConf.Set_LegVel_AllZero();
 		botConf.UpdatePrameter();
 		
 //		nsBot_Configuration::Bot_Configuration::XYZ bufpos;

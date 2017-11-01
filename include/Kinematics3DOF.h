@@ -19,8 +19,8 @@ namespace nsKinematics3DOF{
 	const double RAD2DEG = 180.0 / 3.1415;
 
 	/* Link Length */
-	const double L_LINK_1 = 0.039;	//[m]
-	const double L_LINK_2 = 0.084;	//[m]
+	const double L_LINK_1 = 0.074;	//[m]
+	const double L_LINK_2 = 0.090;	//[m]
 	const double L_LINK_3 = 0.120;	//[m]
 
 	/* Parameter of Homogeneous Transfor Matrix */

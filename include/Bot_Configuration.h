@@ -18,8 +18,8 @@ namespace nsBot_Configuration{
 	const unsigned int NUM_LEG = 4;
 	const unsigned int NUM_JOINT_PER_LEG = 3;
 	
-	const double OFFSET_LENGTH_X = 0.050;
-	const double OFFSET_LENGTH_Y = 0.050;
+	const double OFFSET_LENGTH_X = 0.040;
+	const double OFFSET_LENGTH_Y = 0.040;
 	
 class Bot_Configuration {
 	

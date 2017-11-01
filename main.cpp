@@ -70,9 +70,9 @@ int main(void){
 	nsBot_Configuration::Bot_Configuration botConf;
 	nsBot_Configuration::Bot_Configuration::XYZ init_LegPos[4];
 	for(int i = 0 ; i < 4 ; i++){
-		init_LegPos[i].X =  0.14;
-		init_LegPos[i].Y =  0.14;
-		init_LegPos[i].Z = -0.08;
+		init_LegPos[i].X =  0.1;
+		init_LegPos[i].Y =  0.1;
+		init_LegPos[i].Z = -0.05;
 	}
 								init_LegPos[1].Y *= -1.0;
 	init_LegPos[2].X *= -1.0;	init_LegPos[2].Y *= -1.0;
@@ -135,13 +135,13 @@ int main(void){
 		/*------------------*/
 		/* Attitude Control */
 		/*------------------*/
-//		nsAttitudeControl::AttitudeControl attiCont;
-//		attiCont.Set_BotConf(botConf);
-//		attiCont.Set_Acc(acc);
-//		attiCont.Set_AngVel(ang_vel);
-//		attiCont.Calculation();
-//		nsBot_Configuration::Bot_Configuration botConf_Mod;
-//		botConf_Mod = attiCont.Get_Modified_BotConf();
+		nsAttitudeControl::AttitudeControl attiCont;
+		attiCont.Set_BotConf(botConf);
+		attiCont.Set_Acc(acc);
+		attiCont.Set_AngVel(ang_vel);
+		attiCont.Calculation();
+		nsBot_Configuration::Bot_Configuration botConf_Mod;
+		botConf_Mod = attiCont.Get_Modified_BotConf();
 		
 //		cout << "         ang: " << botConf.Get_LegAngle(0, 3) << endl;
 //		cout << "modified ang: " << botConf_Mod.Get_LegAngle(0, 3) << endl;
@@ -150,7 +150,8 @@ int main(void){
 		double ang[4][3];
 		for(int i = 0 ; i < 4 ; i++){
 			for(int j = 0 ; j < 3 ; j++){
-				ang[i][j] = botConf_Mod.Get_LegAngle(i, j);
+				//ang[i][j] = botConf_Mod.Get_LegAngle(i, j);
+				ang[i][j] = botConf.Get_LegAngle(i, j);
 			}
 		}
 		
@@ -173,6 +174,8 @@ int main(void){
 		sb.SendPulseWidth_us(9, sa.Angle2PW_us(9, ang[3][0]));
 		sb.SendPulseWidth_us(10, sa.Angle2PW_us(10, ang[3][1]));
 		sb.SendPulseWidth_us(11, sa.Angle2PW_us(11, ang[3][2]));
+		
+		//sb.SendPulseWidth_us(11, sa.Angle2PW_us(11, 90.0 * 3.1415 / 180.0));
 
 		/* must wait */
 		tkeeper.TimeKeep();
