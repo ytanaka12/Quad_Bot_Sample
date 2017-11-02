@@ -40,6 +40,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/source/Bot_Configuration.o \
 	${OBJECTDIR}/source/Bot_Walking.o \
 	${OBJECTDIR}/source/InsectBot_Motions.o \
+	${OBJECTDIR}/source/Interpolations.o \
 	${OBJECTDIR}/source/JoystickDriver.o \
 	${OBJECTDIR}/source/KalmanFilter.o \
 	${OBJECTDIR}/source/Kinematics3DOF.o \
@@ -100,6 +101,11 @@ ${OBJECTDIR}/source/InsectBot_Motions.o: source/InsectBot_Motions.cpp
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/InsectBot_Motions.o source/InsectBot_Motions.cpp
+
+${OBJECTDIR}/source/Interpolations.o: source/Interpolations.cpp
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/Interpolations.o source/Interpolations.cpp
 
 ${OBJECTDIR}/source/JoystickDriver.o: source/JoystickDriver.cpp
 	${MKDIR} -p ${OBJECTDIR}/source

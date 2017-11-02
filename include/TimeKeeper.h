@@ -17,7 +17,8 @@
 #include "TimeCount.h"
 
 namespace nsTimeKeeper{
-	const double SAMPLING_TIME = 0.015;	//sec (more than 0.008)
+	//const double SAMPLING_TIME = 0.015;	//sec (more than 0.008)
+	const double SAMPLING_TIME = 0.010;	//sec (more than 0.008)
 
 	class TimeKeeper : public nsTimeCount::TimeCount {
 	public:

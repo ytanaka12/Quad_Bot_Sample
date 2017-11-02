@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include "TimeKeeper.h"
+#include "Interpolations.h"
 
 using namespace std;
 
@@ -299,10 +300,11 @@ namespace nsBot_Walking{
 		static nsBot_Configuration::Bot_Configuration::XYZ centroid[4];
 		static bool ms_trig = true;
 		int mlegNumber[4];
-		mlegNumber[0] = 0;
-		mlegNumber[1] = 2;
-		mlegNumber[2] = 1;
-		mlegNumber[3] = 3;
+		
+		mlegNumber[0] = 3;
+		mlegNumber[1] = 0;
+		mlegNumber[2] = 2;
+		mlegNumber[3] = 1;
 
 		switch(mode){
 			case 0:{
@@ -325,7 +327,6 @@ namespace nsBot_Walking{
 				
 			case 1:{
 				/* move body */
-				//double duration = 1.0;
 				double duration = 1.0;
 				if(duration < timer){
 					botConf.Set_LegVel_AllZero();
@@ -336,8 +337,13 @@ namespace nsBot_Walking{
 				}
 				
 				static nsBot_Configuration::Bot_Configuration::XYZ vel;
+				static Interpolations interpolated_x;
+				static Interpolations interpolated_y;
+				static Interpolations interpolated_z;
+				
 				if(ms_trig == true){
 					ms_trig = false;
+					
 					//nsBot_Configuration::Bot_Configuration::XYZ cent = CalcCentroidOfSquare();
 					//cout << "centroid of square: " << cent.X << " / " << cent.Y << endl;
 					nsBot_Configuration::Bot_Configuration::XYZ cent = CalcCentroidOfTriangle(mlegNumber[mleg_number]);
@@ -349,22 +355,26 @@ namespace nsBot_Walking{
 					if( mlegNumber[mleg_number] == 0
 					 || mlegNumber[mleg_number] == 3){
 						//cout << endl << "Left Leg" << endl << endl;
-						target.X = ( leg_pos[1].X + leg_pos[2].X ) / 2.0 + 0.02;
+						target.X = ( leg_pos[1].X + leg_pos[2].X ) / 2.0 + 0.0;
 						//target.X = cent.X;
-						target.Y = - 0.02 + cent.Y;
+						target.Y = - 0.0 + cent.Y;
 					}else if( mlegNumber[mleg_number] == 1
 						   || mlegNumber[mleg_number] == 2){
 						//cout << endl << "Right Leg" << endl << endl;
-						target.X = ( leg_pos[0].X + leg_pos[3].X ) / 2.0 + 0.02;
+						target.X = ( leg_pos[0].X + leg_pos[3].X ) / 2.0 + 0.0;
 						//target.X = cent.X;
-						target.Y =  0.02 + cent.Y;
+						target.Y =  0.0 + cent.Y;
 					}
 					vel.X = -(target.X) / duration;
 					vel.Y = -(target.Y) / duration;
 					vel.Z = 0.0;
 					
-					if(-0.001 < vel.X && vel.X < 0.001
-					 &&-0.001 < vel.Y && vel.Y < 0.001){
+					interpolated_x.Set_Conditions(duration, 0.0, -target.X);
+					interpolated_y.Set_Conditions(duration, 0.0, -target.Y);
+					interpolated_z.Set_Conditions(duration, 0.0, 0.0);
+					
+					if(-0.001 < target.X && target.X < 0.001
+					 &&-0.001 < target.Y && target.Y < 0.001){
 						botConf.Set_LegVel_AllZero();
 						timer = 0.0;
 						mode = 2;
@@ -372,6 +382,13 @@ namespace nsBot_Walking{
 						break;
 					}
 				}
+				
+				interpolated_x.Update();
+				interpolated_y.Update();
+				interpolated_z.Update();
+				vel.X = interpolated_x.Get_Interpolated_dX();
+				vel.Y = interpolated_y.Get_Interpolated_dX();
+				vel.Z = interpolated_z.Get_Interpolated_dX();
 				
 				botConf.Set_LegVel_All(vel);
 				timer += nsTimeKeeper::SAMPLING_TIME;
@@ -382,17 +399,36 @@ namespace nsBot_Walking{
 				/* move leg */
 				//up
 				double duration = 0.3;
-				//double duration = 1.0;
 				if(duration < timer){
+					ms_trig = true;
 					botConf.Set_LegVel_AllZero();
 					timer = 0.0;
 					mode = 3;
 					break;
 				}
 				nsBot_Configuration::Bot_Configuration::XYZ vel;
-				vel.X = 0.3;
-				vel.Y = 0.0;
-				vel.Z = 0.2;
+				static Interpolations interpolated_x;
+				static Interpolations interpolated_y;
+				static Interpolations interpolated_z;
+				
+				if(ms_trig == true){
+					ms_trig = false;
+					interpolated_x.Set_Conditions(duration, 0.0, 0.10);
+					interpolated_y.Set_Conditions(duration, 0.0, 0.00);
+					interpolated_z.Set_Conditions(duration, 0.0, 0.06);
+				}
+				
+//				vel.X = 0.3;
+//				vel.Y = 0.0;
+//				vel.Z = 0.2;
+				
+				interpolated_x.Update();
+				interpolated_y.Update();
+				interpolated_z.Update();
+				vel.X = interpolated_x.Get_Interpolated_dX();
+				vel.Y = interpolated_y.Get_Interpolated_dX();
+				vel.Z = interpolated_z.Get_Interpolated_dX();
+				
 				botConf.Set_LegVel(mlegNumber[mleg_number], vel);
 				timer += nsTimeKeeper::SAMPLING_TIME;
 				break;
@@ -402,8 +438,8 @@ namespace nsBot_Walking{
 				/* move leg */
 				//down
 				double duration = 0.3;
-				//double duration = 1.0;
 				if(duration < timer){
+					ms_trig = true;
 					botConf.Set_LegVel_AllZero();
 					timer = 0.0;
 					mode = 1;
@@ -414,9 +450,24 @@ namespace nsBot_Walking{
 					break;
 				}
 				nsBot_Configuration::Bot_Configuration::XYZ vel;
-				vel.X = 0.06;
-				vel.Y = 0.0;
-				vel.Z = -0.2;
+				static Interpolations interpolated_x;
+				static Interpolations interpolated_y;
+				static Interpolations interpolated_z;
+				
+				if(ms_trig == true){
+					ms_trig = false;
+					interpolated_x.Set_Conditions(duration, 0.0, 0.02);
+					interpolated_y.Set_Conditions(duration, 0.0, 0.00);
+					interpolated_z.Set_Conditions(duration, 0.0, -0.06);
+				}
+				
+				interpolated_x.Update();
+				interpolated_y.Update();
+				interpolated_z.Update();
+				vel.X = interpolated_x.Get_Interpolated_dX();
+				vel.Y = interpolated_y.Get_Interpolated_dX();
+				vel.Z = interpolated_z.Get_Interpolated_dX();
+				
 				botConf.Set_LegVel(mlegNumber[mleg_number], vel);
 				timer += nsTimeKeeper::SAMPLING_TIME;
 				break;

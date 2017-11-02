@@ -6,6 +6,7 @@
       <itemPath>include/Bot_Configuration.h</itemPath>
       <itemPath>include/Bot_Walking.h</itemPath>
       <itemPath>include/InsectBot_Motions.h</itemPath>
+      <itemPath>include/Interpolations.h</itemPath>
       <itemPath>include/JoystickDriver.h</itemPath>
       <itemPath>include/KalmanFilter.h</itemPath>
       <itemPath>include/Kinematics3DOF.h</itemPath>
@@ -33,6 +34,7 @@
       <itemPath>source/Bot_Configuration.cpp</itemPath>
       <itemPath>source/Bot_Walking.cpp</itemPath>
       <itemPath>source/InsectBot_Motions.cpp</itemPath>
+      <itemPath>source/Interpolations.cpp</itemPath>
       <itemPath>source/JoystickDriver.cpp</itemPath>
       <itemPath>source/KalmanFilter.cpp</itemPath>
       <itemPath>source/Kinematics3DOF.cpp</itemPath>
@@ -97,6 +99,8 @@
       </item>
       <item path="include/InsectBot_Motions.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/Interpolations.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/JoystickDriver.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/KalmanFilter.h" ex="false" tool="3" flavor2="0">
@@ -132,6 +136,8 @@
       <item path="source/Bot_Walking.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/InsectBot_Motions.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/Interpolations.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/JoystickDriver.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -188,6 +194,8 @@
       </item>
       <item path="include/InsectBot_Motions.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="include/Interpolations.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/JoystickDriver.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/KalmanFilter.h" ex="false" tool="3" flavor2="0">
@@ -223,6 +231,8 @@
       <item path="source/Bot_Walking.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/InsectBot_Motions.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/Interpolations.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/JoystickDriver.cpp" ex="false" tool="1" flavor2="0">
       </item>
