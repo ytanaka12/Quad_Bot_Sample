@@ -30,6 +30,7 @@ namespace nsBot_Walking{
 		nsBot_Configuration::Bot_Configuration::XYZ CalcCentroidOfTriangle(int num);
 		nsBot_Configuration::Bot_Configuration::XYZ CalcCentroidOfSquare();
 		void GenerateMotion();
+		void GenerateMotion_LikeSway();
 		
 		nsBot_Configuration::Bot_Configuration Get_BotConf();
 	};

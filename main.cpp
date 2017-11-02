@@ -116,7 +116,8 @@ int main(void){
 		/*------------------*/
 		/* InsectBot motion */
 		/*------------------*/
-		botWalking.GenerateMotion();
+		//botWalking.GenerateMotion();
+		botWalking.GenerateMotion_LikeSway();
 		botConf = botWalking.Get_BotConf();
 		
 		/*-------------*/
