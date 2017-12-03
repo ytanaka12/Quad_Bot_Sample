@@ -57,8 +57,8 @@ OBJECTFILES= \
 CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=-lwiringPi -std=c++11
-CXXFLAGS=-lwiringPi -std=c++11
+CCFLAGS=
+CXXFLAGS=
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -75,87 +75,87 @@ LDLIBSOPTIONS=
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/quad_bot_sample: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/quad_bot_sample ${OBJECTFILES} ${LDLIBSOPTIONS}
+	g++ -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/quad_bot_sample ${OBJECTFILES} ${LDLIBSOPTIONS} -lwiringPi
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/source/AttitudeControl.o: source/AttitudeControl.cpp
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/AttitudeControl.o source/AttitudeControl.cpp
+	$(COMPILE.cc) -g -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/AttitudeControl.o source/AttitudeControl.cpp
 
 ${OBJECTDIR}/source/Bot_Configuration.o: source/Bot_Configuration.cpp
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/Bot_Configuration.o source/Bot_Configuration.cpp
+	$(COMPILE.cc) -g -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/Bot_Configuration.o source/Bot_Configuration.cpp
 
 ${OBJECTDIR}/source/Bot_Walking.o: source/Bot_Walking.cpp
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/Bot_Walking.o source/Bot_Walking.cpp
+	$(COMPILE.cc) -g -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/Bot_Walking.o source/Bot_Walking.cpp
 
 ${OBJECTDIR}/source/InsectBot_Motions.o: source/InsectBot_Motions.cpp
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/InsectBot_Motions.o source/InsectBot_Motions.cpp
+	$(COMPILE.cc) -g -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/InsectBot_Motions.o source/InsectBot_Motions.cpp
 
 ${OBJECTDIR}/source/Interpolations.o: source/Interpolations.cpp
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/Interpolations.o source/Interpolations.cpp
+	$(COMPILE.cc) -g -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/Interpolations.o source/Interpolations.cpp
 
 ${OBJECTDIR}/source/JoystickDriver.o: source/JoystickDriver.cpp
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/JoystickDriver.o source/JoystickDriver.cpp
+	$(COMPILE.cc) -g -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/JoystickDriver.o source/JoystickDriver.cpp
 
 ${OBJECTDIR}/source/KalmanFilter.o: source/KalmanFilter.cpp
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/KalmanFilter.o source/KalmanFilter.cpp
+	$(COMPILE.cc) -g -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/KalmanFilter.o source/KalmanFilter.cpp
 
 ${OBJECTDIR}/source/Kinematics3DOF.o: source/Kinematics3DOF.cpp
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/Kinematics3DOF.o source/Kinematics3DOF.cpp
+	$(COMPILE.cc) -g -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/Kinematics3DOF.o source/Kinematics3DOF.cpp
 
 ${OBJECTDIR}/source/LowPassFilter.o: source/LowPassFilter.cpp
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/LowPassFilter.o source/LowPassFilter.cpp
+	$(COMPILE.cc) -g -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/LowPassFilter.o source/LowPassFilter.cpp
 
 ${OBJECTDIR}/source/SensorInfo.o: source/SensorInfo.cpp
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/SensorInfo.o source/SensorInfo.cpp
+	$(COMPILE.cc) -g -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/SensorInfo.o source/SensorInfo.cpp
 
 ${OBJECTDIR}/source/Serial_CSV_Format.o: source/Serial_CSV_Format.cpp
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/Serial_CSV_Format.o source/Serial_CSV_Format.cpp
+	$(COMPILE.cc) -g -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/Serial_CSV_Format.o source/Serial_CSV_Format.cpp
 
 ${OBJECTDIR}/source/ServoAdjuster.o: source/ServoAdjuster.cpp
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/ServoAdjuster.o source/ServoAdjuster.cpp
+	$(COMPILE.cc) -g -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/ServoAdjuster.o source/ServoAdjuster.cpp
 
 ${OBJECTDIR}/source/ServoBlaster.o: source/ServoBlaster.cpp
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/ServoBlaster.o source/ServoBlaster.cpp
+	$(COMPILE.cc) -g -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/ServoBlaster.o source/ServoBlaster.cpp
 
 ${OBJECTDIR}/source/TimeCount.o: source/TimeCount.cpp
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/TimeCount.o source/TimeCount.cpp
+	$(COMPILE.cc) -g -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/TimeCount.o source/TimeCount.cpp
 
 ${OBJECTDIR}/source/TimeKeeper.o: source/TimeKeeper.cpp
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/TimeKeeper.o source/TimeKeeper.cpp
+	$(COMPILE.cc) -g -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/TimeKeeper.o source/TimeKeeper.cpp
 
 # Subprojects
 .build-subprojects:

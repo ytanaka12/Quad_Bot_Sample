@@ -72,18 +72,22 @@
   <confs>
     <conf name="Debug" type="1">
       <toolsSet>
-        <compilerSet>default</compilerSet>
+        <compilerSet>GNU|GNU</compilerSet>
         <dependencyChecking>true</dependencyChecking>
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
         <ccTool>
+          <standard>8</standard>
           <commandlineTool>g++</commandlineTool>
           <incDir>
             <pElem>include</pElem>
           </incDir>
-          <commandLine>-lwiringPi -std=c++11</commandLine>
         </ccTool>
+        <linkerTool>
+          <commandlineTool>g++</commandlineTool>
+          <commandLine>-lwiringPi</commandLine>
+        </linkerTool>
       </compileType>
       <item path="ServoBlaster_RunKill/killSB.sh" ex="false" tool="3" flavor2="0">
       </item>

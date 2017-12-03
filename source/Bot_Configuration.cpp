@@ -14,6 +14,7 @@
 #include "Bot_Configuration.h"
 #include <iostream>
 #include <math.h>
+#include <Eigen/Core>
 #include <Eigen/Dense>
 #include "TimeKeeper.h"
 #include "Kinematics3DOF.h"
@@ -80,8 +81,15 @@ namespace nsBot_Configuration{
 		}
 	}
 	
-	void Bot_Configuration::Set_BodyAngVel(XYZ ang_vel) {
-
+	void Bot_Configuration::Set_BodyAngVel(XYZ vel_euler) {
+		Eigen::Vector3d omega(vel_euler.X, vel_euler.Y, vel_euler.Z);
+		for(int i = 0 ; i < NUM_LEG ; i++){
+			Eigen::Vector3d r(LegInfo[i].LegPos.X, LegInfo[i].LegPos.Y, LegInfo[i].LegPos.Z);
+			Eigen::Vector3d cross = omega.cross(r);
+			LegInfo[i].LegVel.X = cross(0);
+			LegInfo[i].LegVel.Y = cross(1);
+			LegInfo[i].LegVel.Z = cross(2);
+		}
 	}
 
 

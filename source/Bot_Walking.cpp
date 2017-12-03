@@ -16,6 +16,7 @@
 #include <iostream>
 #include "TimeKeeper.h"
 #include "Interpolations.h"
+#include <math.h>
 
 using namespace std;
 
@@ -269,7 +270,7 @@ namespace nsBot_Walking{
 	/*-----------------------------------*/
 	/* Generate Walking Motion like Sway */
 	/*-----------------------------------*/
-	void Bot_Walking::GenerateMotion_LikeSway(){
+	void Bot_Walking::GenerateMotion_LikeSway(double forward_vel, double yaw_rate){
 		static double time = 0.0;
 		
 		/*------*/
@@ -280,9 +281,9 @@ namespace nsBot_Walking{
 			init_trig = false;
 			nsBot_Configuration::Bot_Configuration::XYZ init_LegPos[4];
 			for(int i = 0 ; i < 4 ; i++){
-				init_LegPos[i].X =  0.12;
-				init_LegPos[i].Y =  0.12;
-				init_LegPos[i].Z = -0.12;
+				init_LegPos[i].X = INIT_LEG_POS_X;
+				init_LegPos[i].Y = INIT_LEG_POS_Y;
+				init_LegPos[i].Z = INIT_LEG_POS_Z;
 			}
 										init_LegPos[1].Y *= -1.0;
 			init_LegPos[2].X *= -1.0;	init_LegPos[2].Y *= -1.0;
@@ -299,6 +300,8 @@ namespace nsBot_Walking{
 		static double timer = 0.0;
 		static nsBot_Configuration::Bot_Configuration::XYZ centroid[4];
 		static bool ms_trig = true;
+		static double moving_velocity = 0.0;
+		static double moving_yaw_rate = 0.0;
 		int mlegNumber[4];
 		
 		mlegNumber[0] = 3;
@@ -310,17 +313,21 @@ namespace nsBot_Walking{
 			case 0:{
 				/* move body first of all */
 				double duration = 2.0;
-				if(duration < timer){
+				//if(duration < timer){
+				if( 0.1 < forward_vel ){
 					botConf.Set_LegVel_AllZero();
 					timer = 0.0;
 					mode = 1;
+					moving_velocity = forward_vel;
+					break;
+				}else if( 0.1 < fabs(yaw_rate)){
+					botConf.Set_LegVel_AllZero();
+					timer = 0.0;
+					mode = 11;
+					moving_yaw_rate = yaw_rate;
 					break;
 				}
-				nsBot_Configuration::Bot_Configuration::XYZ vel;
-				vel.X = 0.0;
-				vel.Y = 0.0;
-				vel.Z = 0.0;
-				botConf.Set_LegVel_All(vel);
+				botConf.Set_LegVel_AllZero();
 				timer += nsTimeKeeper::SAMPLING_TIME;
 				break;
 			}
@@ -425,7 +432,7 @@ namespace nsBot_Walking{
 				interpolated_x.Update();
 				interpolated_y.Update();
 				interpolated_z.Update();
-				vel.X = interpolated_x.Get_Interpolated_dX();
+				vel.X = interpolated_x.Get_Interpolated_dX() * moving_velocity;
 				vel.Y = interpolated_y.Get_Interpolated_dX();
 				vel.Z = interpolated_z.Get_Interpolated_dX();
 				
@@ -446,6 +453,7 @@ namespace nsBot_Walking{
 					mleg_number++;
 					if(3 < mleg_number){
 						mleg_number = 0;
+						mode = 0;
 					}
 					break;
 				}
@@ -464,7 +472,7 @@ namespace nsBot_Walking{
 				interpolated_x.Update();
 				interpolated_y.Update();
 				interpolated_z.Update();
-				vel.X = interpolated_x.Get_Interpolated_dX();
+				vel.X = interpolated_x.Get_Interpolated_dX() * moving_velocity;
 				vel.Y = interpolated_y.Get_Interpolated_dX();
 				vel.Z = interpolated_z.Get_Interpolated_dX();
 				
@@ -472,6 +480,45 @@ namespace nsBot_Walking{
 				timer += nsTimeKeeper::SAMPLING_TIME;
 				break;
 			}
+			
+			case 11:{
+				double duration = 1.0;
+				if(duration < timer){
+					ms_trig = true;
+					mode = 0;
+				}
+				
+				nsBot_Configuration::Bot_Configuration::XYZ ang_vel;
+				static Interpolations interpolated_x;
+				static Interpolations interpolated_y;
+				static Interpolations interpolated_z;
+				
+				if(ms_trig == true){
+					ms_trig = false;
+					interpolated_x.Set_Conditions(duration, 0.0, 0.0);
+					interpolated_y.Set_Conditions(duration, 0.0, 0.0);
+					interpolated_z.Set_Conditions(duration, 0.0, 30.0 * 3.1415 / 180.0);
+				}
+				
+				interpolated_x.Update();
+				interpolated_y.Update();
+				interpolated_z.Update();
+				ang_vel.X = interpolated_x.Get_Interpolated_dX();
+				ang_vel.Y = interpolated_y.Get_Interpolated_dX();
+				ang_vel.Z = interpolated_z.Get_Interpolated_dX() * moving_yaw_rate;
+				
+				botConf.Set_BodyAngVel(ang_vel);
+				
+				timer += nsTimeKeeper::SAMPLING_TIME;
+				break;
+			}
+			
+//			case 12:{
+//				if(GenerateMotion_StandBy() == true){
+//					ms_trig = true;
+//					mode = 0;
+//				}
+//			}
 				
 			default:
 				break;
@@ -490,6 +537,221 @@ namespace nsBot_Walking{
 		
 		time += nsTimeKeeper::SAMPLING_TIME;
 	}
+	
+	
+	/*----------------------------------------------*/
+	/* Generate Walking Motion Stand by             */
+	/* return ture when stand by motion is finished */
+	/*----------------------------------------------*/
+//	bool Bot_Walking::GenerateMotion_StandBy(){
+//		static double time = 0.0;
+//		
+//		nsBot_Configuration::Bot_Configuration::XYZ init_LegPos[4];
+//		for(int i = 0 ; i < 4 ; i++){
+//			init_LegPos[i].X = INIT_LEG_POS_X;
+//			init_LegPos[i].Y = INIT_LEG_POS_Y;
+//			init_LegPos[i].Z = INIT_LEG_POS_Z;
+//		}
+//									init_LegPos[1].Y *= -1.0;
+//		init_LegPos[2].X *= -1.0;	init_LegPos[2].Y *= -1.0;
+//		init_LegPos[3].X *= -1.0;
+//		
+//		static int mode = 0;
+//		static int mleg_number = 0;
+//		static double timer = 0.0;
+//		static nsBot_Configuration::Bot_Configuration::XYZ centroid[4];
+//		static bool ms_trig = true;
+//		static double moving_velocity = 0.0;
+//		static double moving_yaw_rate = 0.0;
+//		int mlegNumber[4];
+//		
+//		mlegNumber[0] = 3;
+//		mlegNumber[1] = 0;
+//		mlegNumber[2] = 2;
+//		mlegNumber[3] = 1;
+//
+//		switch(mode){
+//			case 0:{
+//				/* move body first of all */
+//				double duration = 0.1;
+//				if(duration < timer){
+//					botConf.Set_LegVel_AllZero();
+//					timer = 0.0;
+//					mode = 1;
+//					break;
+//				}
+//
+//				botConf.Set_LegVel_AllZero();
+//				timer += nsTimeKeeper::SAMPLING_TIME;
+//				break;
+//			}
+//				
+//			case 1:{
+//				/* move body */
+//				double duration = 1.0;
+//				if(duration < timer){
+//					botConf.Set_LegVel_AllZero();
+//					timer = 0.0;
+//					mode = 2;
+//					ms_trig = true;
+//					break;
+//				}
+//				
+//				static nsBot_Configuration::Bot_Configuration::XYZ vel;
+//				static Interpolations interpolated_x;
+//				static Interpolations interpolated_y;
+//				static Interpolations interpolated_z;
+//				
+//				if(ms_trig == true){
+//					ms_trig = false;
+//					
+//					//nsBot_Configuration::Bot_Configuration::XYZ cent = CalcCentroidOfSquare();
+//					//cout << "centroid of square: " << cent.X << " / " << cent.Y << endl;
+//					nsBot_Configuration::Bot_Configuration::XYZ cent = CalcCentroidOfTriangle(mlegNumber[mleg_number]);
+//					nsBot_Configuration::Bot_Configuration::XYZ target;
+//					nsBot_Configuration::Bot_Configuration::XYZ leg_pos[4];
+//					for(int i = 0 ; i < 4 ; i++){
+//						leg_pos[i] = botConf.Get_LegPos(i);
+//					}
+//					if( mlegNumber[mleg_number] == 0
+//					 || mlegNumber[mleg_number] == 3){
+//						//cout << endl << "Left Leg" << endl << endl;
+//						target.X = ( leg_pos[1].X + leg_pos[2].X ) / 2.0 + 0.0;
+//						//target.X = cent.X;
+//						target.Y = - 0.0 + cent.Y;
+//					}else if( mlegNumber[mleg_number] == 1
+//						   || mlegNumber[mleg_number] == 2){
+//						//cout << endl << "Right Leg" << endl << endl;
+//						target.X = ( leg_pos[0].X + leg_pos[3].X ) / 2.0 + 0.0;
+//						//target.X = cent.X;
+//						target.Y =  0.0 + cent.Y;
+//					}
+//					vel.X = -(target.X) / duration;
+//					vel.Y = -(target.Y) / duration;
+//					vel.Z = 0.0;
+//					
+//					vel.X = 0.0;
+//					vel.Y = 0.0;
+//					vel.Z = 0.0;
+//					
+//					interpolated_x.Set_Conditions(duration, 0.0, -target.X);
+//					interpolated_y.Set_Conditions(duration, 0.0, -target.Y);
+//					interpolated_z.Set_Conditions(duration, 0.0, 0.0);
+//					
+//					if(-0.001 < target.X && target.X < 0.001
+//					 &&-0.001 < target.Y && target.Y < 0.001){
+//						botConf.Set_LegVel_AllZero();
+//						timer = 0.0;
+//						mode = 2;
+//						ms_trig = true;
+//						break;
+//					}
+//				}
+//				
+//				interpolated_x.Update();
+//				interpolated_y.Update();
+//				interpolated_z.Update();
+//				vel.X = interpolated_x.Get_Interpolated_dX();
+//				vel.Y = interpolated_y.Get_Interpolated_dX();
+//				vel.Z = interpolated_z.Get_Interpolated_dX();
+//				
+//				botConf.Set_LegVel_All(vel);
+//				timer += nsTimeKeeper::SAMPLING_TIME;
+//				break;
+//			}
+//				
+//			case 2:{
+//				/* move leg */
+//				//up
+//				double duration = 0.999;
+//				if(duration < timer){
+//					ms_trig = true;
+//					botConf.Set_LegVel_AllZero();
+//					timer = 0.0;
+//					mode = 3;
+//					break;
+//				}
+//				nsBot_Configuration::Bot_Configuration::XYZ vel;
+//				static Interpolations interpolated_x;
+//				static Interpolations interpolated_y;
+//				static Interpolations interpolated_z;
+//				
+//				if(ms_trig == true){
+//					ms_trig = false;
+//					interpolated_x.Set_Conditions(duration, 
+//												botConf.Get_LegPos(mlegNumber[mleg_number]).X, 
+//												init_LegPos[mlegNumber[mleg_number]].X );
+//					interpolated_y.Set_Conditions(duration, 
+//												botConf.Get_LegPos(mlegNumber[mleg_number]).Y, 
+//												init_LegPos[mlegNumber[mleg_number]].Y );
+//					interpolated_z.Set_Conditions(duration, 0.0, -0.06 );
+//				}
+//				
+//				interpolated_x.Update();
+//				interpolated_y.Update();
+//				interpolated_z.Update();
+//				vel.X = interpolated_x.Get_Interpolated_dX();
+//				vel.Y = interpolated_y.Get_Interpolated_dX();
+//				vel.Z = interpolated_z.Get_Interpolated_dX();
+//				
+//				botConf.Set_LegVel(mlegNumber[mleg_number], vel);
+//				timer += nsTimeKeeper::SAMPLING_TIME;
+//				break;
+//			}
+//			
+//			case 3:{
+//				/* move leg */
+//				//down
+//				double duration = 0.3;
+//				if(duration < timer){
+//					ms_trig = true;
+//					botConf.Set_LegVel_AllZero();
+//					timer = 0.0;
+//					mode = 1;
+//					mleg_number++;
+//					if(3 < mleg_number){
+//						return true;
+//					}
+//					break;
+//				}
+//				nsBot_Configuration::Bot_Configuration::XYZ vel;
+//				static Interpolations interpolated_x;
+//				static Interpolations interpolated_y;
+//				static Interpolations interpolated_z;
+//				
+//				if(ms_trig == true){
+//					ms_trig = false;
+//					interpolated_x.Set_Conditions(duration, 
+//												botConf.Get_LegPos(mlegNumber[mleg_number]).X, 
+//												botConf.Get_LegPos(mlegNumber[mleg_number]).X );
+//					interpolated_y.Set_Conditions(duration, 
+//												botConf.Get_LegPos(mlegNumber[mleg_number]).Y, 
+//												botConf.Get_LegPos(mlegNumber[mleg_number]).Y );
+//					interpolated_z.Set_Conditions(duration, 0.0, 0.06 );
+//				}
+//				
+//				interpolated_x.Update();
+//				interpolated_y.Update();
+//				interpolated_z.Update();
+//				vel.X = interpolated_x.Get_Interpolated_dX();
+//				vel.Y = interpolated_y.Get_Interpolated_dX();
+//				vel.Z = interpolated_z.Get_Interpolated_dX();
+//				
+//				botConf.Set_LegVel(mlegNumber[mleg_number], vel);
+//				timer += nsTimeKeeper::SAMPLING_TIME;
+//				break;
+//			}
+//				
+//			default:
+//				break;
+//		}
+//		botConf.UpdatePrameter();
+//		
+//		time += nsTimeKeeper::SAMPLING_TIME;
+//		
+//		return false;
+//	}
+	
 	
 	nsBot_Configuration::Bot_Configuration Bot_Walking::Get_BotConf(){
 		nsBot_Configuration::Bot_Configuration ans(botConf);

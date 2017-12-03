@@ -26,7 +26,8 @@ using namespace std;
 
 const unsigned int BTN_PORT = 12;	//BCM(GPIO)
 
-int main(void){
+int main(int argc, char** argv){
+	cout << "hoge" << endl;
 	/*-------------------------------*/
 	/* Read Servo Adjuster Paramters */
 	/*-------------------------------*/
@@ -113,11 +114,15 @@ int main(void){
 			break;
 		}
 		
+		double x_vel = js.GetLStick_Y();
+		double yaw_rate = js.GetRStick_X();
+		cout << "x vel: " << x_vel << endl;
+		
 		/*------------------*/
 		/* InsectBot motion */
 		/*------------------*/
 		//botWalking.GenerateMotion();
-		botWalking.GenerateMotion_LikeSway();
+		botWalking.GenerateMotion_LikeSway(x_vel, yaw_rate);
 		botConf = botWalking.Get_BotConf();
 		
 		/*-------------*/

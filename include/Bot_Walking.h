@@ -17,6 +17,11 @@
 #include "Bot_Configuration.h"
 
 namespace nsBot_Walking{
+	
+	const double INIT_LEG_POS_X = 0.12;
+	const double INIT_LEG_POS_Y = 0.12;
+	const double INIT_LEG_POS_Z =-0.12;
+	
 	class Bot_Walking {
 		
 	private:
@@ -30,7 +35,8 @@ namespace nsBot_Walking{
 		nsBot_Configuration::Bot_Configuration::XYZ CalcCentroidOfTriangle(int num);
 		nsBot_Configuration::Bot_Configuration::XYZ CalcCentroidOfSquare();
 		void GenerateMotion();
-		void GenerateMotion_LikeSway();
+		void GenerateMotion_LikeSway(double forward_vel, double yaw_rate);
+		bool GenerateMotion_StandBy();
 		
 		nsBot_Configuration::Bot_Configuration Get_BotConf();
 	};
