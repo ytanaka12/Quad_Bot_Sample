@@ -144,8 +144,8 @@ namespace nsAttitudeControl{
 		I_Control();
 		//PI_Control();
 		
-		cout << "Rot: " << Rot.X * nsKinematics3DOF::RAD2DEG << 
-				" / " << Rot.Y * nsKinematics3DOF::RAD2DEG << endl;
+//		cout << "Rot: " << Rot.X * nsKinematics3DOF::RAD2DEG << 
+//				" / " << Rot.Y * nsKinematics3DOF::RAD2DEG << endl;
 		
 		//cout << "Rot: " << Rot.Y << " Ang vel: " << AngVel.Y << endl;
 		

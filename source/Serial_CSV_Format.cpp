@@ -82,7 +82,7 @@ namespace nsSerial_CSV_Format{
 	/*---------------------------*/
 	void Serial_CSV_Format::Update(){
 		if(FileDesc < 0){
-			cout << "Device file is not available. (ReadSerial as CSV Format)" << endl;
+			//cout << "Device file is not available. (ReadSerial as CSV Format)" << endl;
 			return;
 		}
 		

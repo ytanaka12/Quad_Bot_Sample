@@ -78,11 +78,11 @@
       </toolsSet>
       <compileType>
         <ccTool>
-          <standard>8</standard>
           <commandlineTool>g++</commandlineTool>
           <incDir>
             <pElem>include</pElem>
           </incDir>
+          <commandLine>-std=c++11</commandLine>
         </ccTool>
         <linkerTool>
           <commandlineTool>g++</commandlineTool>

@@ -24,7 +24,7 @@
 
 using namespace std;
 
-const unsigned int BTN_PORT = 12;	//BCM(GPIO)
+const unsigned int BTN_PORT = 21;	//BCM(GPIO)
 
 int main(int argc, char** argv){
 	cout << "hoge" << endl;
@@ -116,7 +116,7 @@ int main(int argc, char** argv){
 		
 		double x_vel = js.GetLStick_Y();
 		double yaw_rate = js.GetRStick_X();
-		cout << "x vel: " << x_vel << endl;
+		//cout << "x vel: " << x_vel << endl;
 		
 		/*------------------*/
 		/* InsectBot motion */
